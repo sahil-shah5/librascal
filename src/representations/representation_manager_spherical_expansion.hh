@@ -91,8 +91,8 @@ namespace rascal {
       LMProductHotLoop<l_unroll - 1>::lm_explicit_prod(coeffn, harm, coeffnlm,
                                                        n);
 
-      size_t lm_start{(l_unroll) * (l_unroll)};
-      size_t lm_end{(l_unroll + 1) * (l_unroll + 1)};
+      constexpr size_t lm_start{(l_unroll) * (l_unroll)};
+      constexpr size_t lm_end{(l_unroll + 1) * (l_unroll + 1)};
       for (size_t lm = lm_start; lm < lm_end; ++lm) {
         coeffnlm(n, lm) += coeffn(n, l_unroll) * harm(lm);
       }
