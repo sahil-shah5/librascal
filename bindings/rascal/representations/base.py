@@ -8,7 +8,8 @@ import queue
 
 # Register Calculators
 _representations_list = ["sortedcoulomb", "sphericalexpansion",
-                         "sphericalinvariants", "sphericalcovariants"]
+                         "sphericalinvariants", "sphericalcovariants", 
+                         "pairdistances"]
 _representations = {}
 for k, v in representation_calculators.__dict__.items():
     if "pybind11_builtins.pybind11_type" in str(type(v)):
@@ -26,7 +27,6 @@ def CalculatorFactory(rep_options):
              'The available combinations are: {}').format(
                 name, list(_representations.keys())))
     return _representations[name](*rep_options['args'])
-
 
 def cutoff_function_dict_switch(cutoff_function_type, **kwargs):
     """
@@ -69,7 +69,7 @@ def cutoff_function_dict_switch(cutoff_function_type, **kwargs):
             ),
         )
     else:
-        raise NotImplementedError('cutoff_function: '+cutoff_function_type +
-                                  ' has not been implemented.')
+        raise NotImplementedError('cutoff_function: '+cutoff_function_type+
+                                    ' has not been implemented.')
 
     return cutoff_function_dict
